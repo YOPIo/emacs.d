@@ -2,8 +2,8 @@
 ;; Buildin settings
 ;; ---------------------------------------
 ;; Do not create buckup file
-(setq auto-save-default 0)
-(setq make-backup-files 0)
+(setq auto-save-default nil)
+(setq make-backup-files nil)
 ;; Do not show startup memu
 (setq inhibit-startup-message t)
 ;; Delete toolbar
@@ -55,6 +55,7 @@
 (global-hl-line-mode t)
 
 (load-file "~/.emacs.d/google-c-style.el")
+
 (require 'google-c-style)
 (add-hook 'c-mode-common-hook 'google-set-c-style)
 (add-hook 'c++-mode-common-hook 'google-set-c-style)
@@ -169,3 +170,11 @@
 ;; Settings for yasnippets
 ;;---------------------------------------
 (yas-global-mode 1)
+;; Insert snippet
+(define-key yas-minor-mode-map (kbd "C-x y i") 'yas-insert-snippet)
+;; Create new snippet
+(define-key yas-minor-mode-map (kbd "C-x y n") 'yas-new-snippet)
+;; Edit snippet
+(define-key yas-minor-mode-map (kbd "C-x y e") 'yas-visit-snippet-file)
+
+;; End of file
