@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: main
+# key: main
+# --
+auto main(${1:int argc, char *argv[]}) -> int
+{
+    $0
+    return 0;
+}
