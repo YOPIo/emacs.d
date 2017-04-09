@@ -54,8 +54,21 @@
 (setq hl-line-face 'hlline-face)
 (global-hl-line-mode t)
 
-(load-file "~/.emacs.d/google-c-style.el")
+;; Highlight lines if number of character over 80 in c, c++, python
+(add-hook 'c-mode-hook
+  (lambda ()
+    (font-lock-add-keywords nil
+      '(("^[^\n]\\{80\\}\\(.*\\)$" 1 font-lock-warning-face t)))))
+(add-hook 'c++-mode-hook
+  (lambda ()
+    (font-lock-add-keywords nil
+      '(("^[^\n]\\{80\\}\\(.*\\)$" 1 font-lock-warning-face t)))))
+(add-hook 'python-mode-hook
+  (lambda ()
+    (font-lock-add-keywords nil
+      '(("^[^\n]\\{80\\}\\(.*\\)$" 1 font-lock-warning-face t)))))
 
+(load-file "~/.emacs.d/google-c-style.el")
 (require 'google-c-style)
 (add-hook 'c-mode-common-hook 'google-set-c-style)
 (add-hook 'c++-mode-common-hook 'google-set-c-style)
@@ -84,6 +97,7 @@
 (el-get-bundle company-quickhelp)
 (el-get-bundle yasnippets)
 (el-get-bundle cmake-mode)
+(el-get-bundle pos-tip)
 
 ;;---------------------------------------
 ;; Settings for irony-mode
@@ -115,7 +129,8 @@
 (when (locate-library "company")
   (global-company-mode 1)
   (global-set-key (kbd "C-M-i") 'company-complete)
-  ;; (setq company-idle-delay nil) ; 自動補完をしない
+  ;; Complete soon
+  (setq company-idle-delay 0)
   ;; Move to next or previous
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous)
@@ -124,8 +139,11 @@
   ;; Search
   (define-key company-active-map (kbd "C-s") 'company-filter-candidates)
   ;; Complete
-  (define-key company-active-map (kbd "C-j")   'company-complete-selection)
-  (define-key company-active-map (kbd "<tab>") 'company-complete-selection))
+  (define-key company-active-map (kbd "C-j")   'company-complete-selection))
+
+;; Options
+(setq company-minimum-prefix-length 2)
+(setq company-selection-wrap-around t)
 
 ;; Color setting
 (set-face-attribute 'company-tooltip nil
@@ -163,8 +181,10 @@
 ;;---------------------------------------
 ;; Settings for company-quickhelp
 ;;---------------------------------------
+(company-quickhelp-mode 1)
 (eval-after-load 'company
   '(define-key company-active-map (kbd "C-c h") #'company-quickhelp-manual-begin))
+
 
 ;;---------------------------------------
 ;; Settings for yasnippets
