@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: operator
+# key: operator
+# group: operator overloading
+# --
+auto ${1:MyClass}::operator $2 (const $1 &other) -> $3
+{
+    $0
+}

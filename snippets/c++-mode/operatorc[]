@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: operatorc[]
+# key: c[
+# group: operator overloading
+# --
+auto operator[](${2:int index}) -> const ${1:Type}
+{
+        $0
+}
