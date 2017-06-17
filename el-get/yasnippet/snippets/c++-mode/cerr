@@ -2,4 +2,4 @@
 # name: cerr
 # key: err
 # --
-cerr << $0;
+std::cerr << $0;

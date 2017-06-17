@@ -40,7 +40,15 @@
 (show-paren-mode 1)
 (set-face-background 'show-paren-match-face "grey")
 (set-face-foreground 'show-paren-match-face "black")
-;; highlight
+;; .h -> c++ mode
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+
+;; Input methods, use mozc
+(require 'mozc)
+(set-language-environment "Japanese")
+(setq default-input-method "japanese-mozc")
+
+;; highlight line
 (defface hlline-face
   '((((class color)
       (background dark))
@@ -58,15 +66,15 @@
 (add-hook 'c-mode-hook
   (lambda ()
     (font-lock-add-keywords nil
-      '(("^[^\n]\\{80\\}\\(.*\\)$" 1 font-lock-warning-face t)))))
+      '(("^[^\n]\\{100\\}\\(.*\\)$" 1 font-lock-warning-face t)))))
 (add-hook 'c++-mode-hook
   (lambda ()
     (font-lock-add-keywords nil
-      '(("^[^\n]\\{80\\}\\(.*\\)$" 1 font-lock-warning-face t)))))
+      '(("^[^\n]\\{100\\}\\(.*\\)$" 1 font-lock-warning-face t)))))
 (add-hook 'python-mode-hook
   (lambda ()
     (font-lock-add-keywords nil
-      '(("^[^\n]\\{80\\}\\(.*\\)$" 1 font-lock-warning-face t)))))
+      '(("^[^\n]\\{100\\}\\(.*\\)$" 1 font-lock-warning-face t)))))
 
 (load-file "~/.emacs.d/google-c-style.el")
 (require 'google-c-style)
@@ -171,6 +179,9 @@
 ;; Settings for flycheck
 ;;---------------------------------------
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(add-hook 'c++-mode-hook
+          (lambda () (setq flycheck-clang-include-path
+                           (list (expand-file-name "/usr/include/eigen3")))))
 
 ;;---------------------------------------
 ;; Settings for flycheck-irony
@@ -198,3 +209,18 @@
 (define-key yas-minor-mode-map (kbd "C-x y e") 'yas-visit-snippet-file)
 
 ;; End of file
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(blink-cursor-mode nil)
+ '(irony-additional-clang-options (quote ("-std=c++11")))
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Noto Mono" :foundry "GOOG" :slant normal :weight normal :height 143 :width normal)))))
