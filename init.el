@@ -106,6 +106,7 @@
 (el-get-bundle yasnippets)
 (el-get-bundle cmake-mode)
 (el-get-bundle pos-tip)
+(el-get-bundle col-highlight)
 
 ;;---------------------------------------
 ;; Settings for irony-mode
@@ -179,6 +180,7 @@
 ;; Settings for flycheck
 ;;---------------------------------------
 (add-hook 'after-init-hook #'global-flycheck-mode)
+;; additional path for flycheck
 (add-hook 'c++-mode-hook
           (lambda () (setq flycheck-clang-include-path
                            (list (expand-file-name "/usr/include/eigen3")))))
@@ -224,3 +226,14 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Noto Mono" :foundry "GOOG" :slant normal :weight normal :height 143 :width normal)))))
+
+
+;;---------------------------------------
+;; Settings for column-maker
+;;---------------------------------------
+;;; col-highlight.el
+(require 'col-highlight)
+(column-highlight-mode 1)
+;; Color setting
+(custom-set-faces
+ '(col-highlight((t (:background "dark slate gray")))))
