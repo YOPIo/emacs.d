@@ -133,6 +133,18 @@
 ;(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
 ;;---------------------------------------
+;; Settings for irony
+;; irony-mode は libclang を利用してコードの補完などをする
+;; 初回起動時に "M-x irony-install-server" を実行する必要がある
+;;---------------------------------------
+(eval-after-load "irony"
+  '(progn
+     (custom-set-variables '(irony-additional-clang-options '("-std=c++11"))) ;; clang++ に渡すオプションの追加
+     (add-to-list 'company-backends 'company-irony)
+     (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+     (add-hook 'c-mode-common-hook 'irony-mode)))
+
+;;---------------------------------------
 ;; Settings for company-mode
 ;;---------------------------------------
 (when (locate-library "company")
@@ -146,7 +158,7 @@
   (define-key company-search-map (kbd "C-n") 'company-select-next)
   (define-key company-search-map (kbd "C-p") 'company-select-previous)
   ;; Search
-  (define-key company-active-map (kbd "C-s") 'company-filter-candidates)
+  ;; (define-key company-active-map (kbd "C-s") 'company-filter-candidates)
   ;; Complete
   (define-key company-active-map (kbd "C-j")   'company-complete-selection))
 
@@ -179,17 +191,25 @@
 ;;---------------------------------------
 ;; Settings for flycheck
 ;;---------------------------------------
-(add-hook 'after-init-hook #'global-flycheck-mode)
-;; additional path for flycheck
-(add-hook 'c++-mode-hook
-          (lambda () (setq flycheck-clang-include-path
-                           (list (expand-file-name "/usr/include/eigen3")))))
+(when (require 'flycheck nil 'noerror)
+  (custom-set-variables
+   ;; エラーをポップアップで表示
+   '(flycheck-display-errors-function
+     (lambda (errors)
+       (let ((messages (mapcar #'flycheck-error-message errors)))
+         (popup-tip (mapconcat 'identity messages "\n")))))
+   '(flycheck-display-errors-delay 0.5))
+  (define-key flycheck-mode-map (kbd "C-M-n") 'flycheck-next-error)
+  (define-key flycheck-mode-map (kbd "C-M-p") 'flycheck-previous-error)
+  (add-hook 'c-mode-common-hook 'flycheck-mode))
 
 ;;---------------------------------------
 ;; Settings for flycheck-irony
 ;;---------------------------------------
-(eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+(eval-after-load "flycheck"
+  '(progn
+     (when (locate-library "flycheck-irony")
+       (flycheck-irony-setup))))
 
 ;;---------------------------------------
 ;; Settings for company-quickhelp
@@ -232,8 +252,8 @@
 ;; Settings for column-maker
 ;;---------------------------------------
 ;;; col-highlight.el
-(require 'col-highlight)
-(column-highlight-mode 1)
+;; (require 'col-highlight)
+;; (column-highlight-mode 1)
 ;; Color setting
-(custom-set-faces
- '(col-highlight((t (:background "dark slate gray")))))
+;;(custom-set-faces
+;;  '(col-highlight((t (:background "dark slate gray")))))
