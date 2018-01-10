@@ -3,7 +3,7 @@
 # key: []
 # group: operator overloading
 # --
-auto operator [] (${2:std::size_t index}) -> ${1:Type}&
+${1:Type}& operator[](${2:int index})
 {
         $0
 }

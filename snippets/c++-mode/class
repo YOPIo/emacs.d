@@ -4,16 +4,22 @@
 # --
 class ${1:Class}
 {
-public:
     /* ${1:$(yas/substr yas-text "[^: ]*")} constructors */
+ public:
     ${1:$(yas/substr yas-text "[^: ]*")} ();
+
+
+    /* ${1:$(yas/substr yas-text "[^: ]*")} destructor */
+ public:
     virtual ~${1:$(yas/substr yas-text "[^: ]*")} ();
 
+
+    /* ${1:$(yas/substr yas-text "[^: ]*")} public operators*/
+public:
     ${1:$(yas/substr yas-text "[^: ]*")} (const ${1:$(yas/substr yas-text "[^: ]*")}&  ${2:arg}) = default;
     ${1:$(yas/substr yas-text "[^: ]*")} (      ${1:$(yas/substr yas-text "[^: ]*")}&& ${2:$(yas/substr yas-text "[^: ]*")}) = default;
 
-    /* ${1:$(yas/substr yas-text "[^: ]*")} operators*/
-    auto operator = (const ${1:$(yas/substr yas-text "[^: ]*")}& ${2:$(yas/substr yas-text "[^: ]*")}) -> ${1:$(yas/substr yas-text "[^: ]*")}& = default;
-    auto operator = (${1:$(yas/substr yas-text "[^: ]*")}&& ${2:$(yas/substr yas-text "[^: ]*")})      -> ${1:$(yas/substr yas-text "[^: ]*")}& = default;
+    auto operator = (const ${1:$(yas/substr yas-text "[^: ]*")}&  ${2:$(yas/substr yas-text "[^: ]*")}) -> ${1:$(yas/substr yas-text "[^: ]*")}& = default;
+    auto operator = (      ${1:$(yas/substr yas-text "[^: ]*")}&& ${2:$(yas/substr yas-text "[^: ]*")}) -> ${1:$(yas/substr yas-text "[^: ]*")}& = default;
 $0
 }; // class ${1:$(yas/substr yas-text "[^: ]*")}

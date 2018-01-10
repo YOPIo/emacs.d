@@ -2,7 +2,7 @@
 # name: main
 # key: main
 # --
-auto main(${1:int argc, char *argv[]}) -> int
+int main(${1:int argc, char *argv[]})
 {
     $0
     return 0;

@@ -2,6 +2,13 @@
 ;; Buildin settings
 ;; ---------------------------------------
 ;; Do not create buckup file
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (setq auto-save-default nil)
 (setq make-backup-files nil)
 ;; Do not show startup memu
@@ -25,7 +32,7 @@
 ;; Input '\' instead '¥' for windows
 (define-key global-map [?¥] [?\\])
 ;; Display alpha
-(set-frame-parameter (selected-frame) 'alpha '(1.00))
+;; (set-frame-parameter (selected-frame) 'alpha '(0.9))
 ;; C-h attach Backspace
 (keyboard-translate ?\C-h ?\C-?)
 (global-set-key "\C-h" nil)
@@ -44,9 +51,9 @@
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 ;; Input methods, use mozc
-(require 'mozc)
-(set-language-environment "Japanese")
-(setq default-input-method "japanese-mozc")
+;;(require 'mozc)
+;;(set-language-environment "Japanese")
+;;(setq default-input-method "japanese-mozc")
 
 ;; highlight line
 (defface hlline-face
@@ -64,23 +71,23 @@
 
 ;; Highlight lines if number of character over 80 in c, c++, python
 (add-hook 'c-mode-hook
-  (lambda ()
-    (font-lock-add-keywords nil
-      '(("^[^\n]\\{100\\}\\(.*\\)$" 1 font-lock-warning-face t)))))
+          (lambda ()
+            (font-lock-add-keywords nil
+                                    '(("^[^\n]\\{80\\}\\(.*\\)$" 1 font-lock-warning-face t)))))
 (add-hook 'c++-mode-hook
-  (lambda ()
-    (font-lock-add-keywords nil
-      '(("^[^\n]\\{100\\}\\(.*\\)$" 1 font-lock-warning-face t)))))
+          (lambda ()
+            (font-lock-add-keywords nil
+                                    '(("^[^\n]\\{80\\}\\(.*\\)$" 1 font-lock-warning-face t)))))
 (add-hook 'python-mode-hook
-  (lambda ()
-    (font-lock-add-keywords nil
-      '(("^[^\n]\\{100\\}\\(.*\\)$" 1 font-lock-warning-face t)))))
+          (lambda ()
+            (font-lock-add-keywords nil
+                                    '(("^[^\n]\\{80\\}\\(.*\\)$" 1 font-lock-warning-face t)))))
 
-(load-file "~/.emacs.d/google-c-style.el")
-(require 'google-c-style)
-(add-hook 'c-mode-common-hook 'google-set-c-style)
-(add-hook 'c++-mode-common-hook 'google-set-c-style)
-(add-hook 'c-mode-common-hook 'google-make-newline-indent)
+;;(load-file "~/.emacs.d/google-c-style.el")
+;;(require 'google-c-style)
+;;(add-hook 'c-mode-common-hook 'google-set-c-style)
+;;(add-hook 'c++-mode-common-hook 'google-set-c-style)
+;;(add-hook 'c-mode-common-hook 'google-make-newline-indent)
 
 ;;---------------------------------------
 ;; Settings for el-get
@@ -106,7 +113,10 @@
 (el-get-bundle yasnippets)
 (el-get-bundle cmake-mode)
 (el-get-bundle pos-tip)
+(el-get-bundle haskell-mode)
 (el-get-bundle col-highlight)
+(el-get-bundle twittering-mode)
+
 
 ;;---------------------------------------
 ;; Settings for irony-mode
@@ -124,13 +134,13 @@
 
 ;; replace the `completion-at-point' and `complete-symbol' bindings in
 ;; irony-mode's buffers by irony-mode's function
-;(defun my-irony-mode-hook ()
-;  (define-key irony-mode-map [remap completion-at-point]
-;    'irony-completion-at-point-async)
-;  (define-key irony-mode-map [remap complete-symbol]
-;    'irony-completion-at-point-async))
-;(add-hook 'irony-mode-hook 'my-irony-mode-hook)
-;(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+                                        ;(defun my-irony-mode-hook ()
+                                        ;  (define-key irony-mode-map [remap completion-at-point]
+                                        ;    'irony-completion-at-point-async)
+                                        ;  (define-key irony-mode-map [remap complete-symbol]
+                                        ;    'irony-completion-at-point-async))
+                                        ;(add-hook 'irony-mode-hook 'my-irony-mode-hook)
+                                        ;(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
 ;;---------------------------------------
 ;; Settings for irony
@@ -237,6 +247,26 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
+ '(c-offsets-alist
+   (quote
+    ((namespace-open . c-lineup-dont-change)
+     (namespace-close . c-lineup-dont-change)
+     (innamespace . c-lineup-dont-change))))
+ '(flycheck-display-errors-delay 0.5)
+ '(flycheck-display-errors-function
+   (lambda
+     (errors)
+     (let
+         ((messages
+           (mapcar
+            (function flycheck-error-message)
+            errors)))
+       (popup-tip
+        (mapconcat
+         (quote identity)
+         messages "
+")))))
+ '(font-use-system-font t)
  '(irony-additional-clang-options (quote ("-std=c++11")))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
@@ -245,7 +275,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Noto Mono" :foundry "GOOG" :slant normal :weight normal :height 143 :width normal)))))
+ '(default ((t (:family "Ricty" :foundry "PfEd" :slant normal :weight normal :height 151 :width normal)))))
+
+
+;;---------------------------------------
+;; Twittering-mode
+;;---------------------------------------
+(add-to-list 'load-path "~/.emacs.d/el-get/twittering-mode")
+(require 'twittering-mode)
+(setq twittering-use-master-password t)
 
 
 ;;---------------------------------------

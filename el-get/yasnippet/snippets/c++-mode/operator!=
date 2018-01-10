@@ -3,7 +3,7 @@
 # key: !=
 # group: operator overloading
 # --
-auto ${1:MyClass}::operator!=(const $1 &other) const -> bool
+bool ${1:MyClass}::operator!=(const $1 &other) const
 {
     return !(*this == other);
 }

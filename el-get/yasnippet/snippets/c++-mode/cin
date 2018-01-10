@@ -2,4 +2,4 @@
 # name: cin
 # key: cin
 # --
-std::cin >> $0;
+cin >> $0;
