@@ -2,4 +2,9 @@
 # name: typedef
 # key: type
 # --
+/*!
+ * @typedef $2
+ * @brief 
+ * @details 
+ */
 typedef ${1:type} ${2:alias};

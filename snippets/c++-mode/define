@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: define
+# key: define
+# --
+/*!
+ * @def $1
+ * @brief 
+ * @details 
+ */
+#define ${1:Define} $2

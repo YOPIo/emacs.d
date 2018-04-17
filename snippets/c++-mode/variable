@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: variable
+# key: v
+# --
+/*! $0  */
+$1 $2;

@@ -1,13 +1,13 @@
 # -*- mode: snippet -*-
-# name: enum
-# key: enum
+# name: union
+# key: union
 # --
 /*!
- * @enum $1
+ * @union $1
  * @brief 
  * @details 
 */
-enum ${1:Enum}
+union ${1:Enum}
 {
   $0 /*!<   */
 };

@@ -1,9 +1,12 @@
 # -*- mode: snippet -*-
 # name: operator
 # key: operator
-# group: operator overloading
 # --
-auto ${1:MyClass}::operator $2 (const $1 &other) -> $3
-{
-    $0
-}
+/*!
+ * @fu operator $1
+ * @brief 
+ * @details 
+ * @return 
+ * @exception none
+*/
+auto operator ${1:operator} ($2) -> ${3:Return};

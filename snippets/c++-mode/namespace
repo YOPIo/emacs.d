@@ -2,6 +2,11 @@
 # name: namespace
 # key: ns
 # --
+/*!
+ * @namespace $1
+ * @brief 
+ * @details 
+ */
 namespace ${1:namespace}
 {
 

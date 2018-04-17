@@ -3,11 +3,13 @@
 # key: f
 # --
 /*!
- * @fn ${3:$(yas/substr yas-text "[^: ]*")} ${1:$(yas/substr yas-text "[^: ]*")} (${2:$(yas/substr yas-text "[^: ]*")})
- * @brief 
- * @param[in] 
+ * @fn
+ * explain
+ * @brief      
+ * @param[in]  
  * @param[out] 
- * @return 
- * @details 
+ * @return     
+ * @details    
+ * @exception  
  */
 auto ${1:Function} (${2:Param}) -> ${3:Return};
