@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: new_file
+# key: newfile
+# --
+/*!
+ * @file $1
+ * @brief $2
+ * @author $3
+ * @date $4
+ * @details $5
+ */
+

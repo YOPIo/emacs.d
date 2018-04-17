@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: enum
+# key: enum
+# --
+/*!
+ * @enum
+ * @brief
+*/
+enum $1
+{
+  $0 /*!<  */
+};

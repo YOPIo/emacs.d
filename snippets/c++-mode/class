@@ -2,24 +2,48 @@
 # name: class
 # key: class
 # --
+/*!
+ * @class
+ * @brief
+ * @details
+*/
 class ${1:Class}
 {
-    /* ${1:$(yas/substr yas-text "[^: ]*")} constructors */
  public:
-    ${1:$(yas/substr yas-text "[^: ]*")} ();
+  //! A default constructor
+  /*!
+   * 
+   */
+  ${1:$(yas/substr yas-text "[^: ]*")} () = default;
 
+  //! A copy constructor
+  /*!
+   * 
+   */
+  ${1:$(yas/substr yas-text "[^: ]*")} (const ${1:$(yas/substr yas-text "[^: ]*")}& ${2:arg}) = default;
 
-    /* ${1:$(yas/substr yas-text "[^: ]*")} destructor */
- public:
-    virtual ~${1:$(yas/substr yas-text "[^: ]*")} ();
+  //! A move constructor
+  /*!
+   * 
+   */
+  ${1:$(yas/substr yas-text "[^: ]*")} (${1:$(yas/substr yas-text "[^: ]*")}&& ${2:$(yas/substr yas-text "[^: ]*")}) = default;
 
+  //! A destructor
+  /*!
+   * 
+   */
+  virtual ~${1:$(yas/substr yas-text "[^: ]*")} () = default;
 
-    /* ${1:$(yas/substr yas-text "[^: ]*")} public operators*/
-public:
-    ${1:$(yas/substr yas-text "[^: ]*")} (const ${1:$(yas/substr yas-text "[^: ]*")}&  ${2:arg}) = default;
-    ${1:$(yas/substr yas-text "[^: ]*")} (      ${1:$(yas/substr yas-text "[^: ]*")}&& ${2:$(yas/substr yas-text "[^: ]*")}) = default;
+  //! A copy assignment operator
+  /*!
+   * 
+   */
+  auto operator = (const ${1:$(yas/substr yas-text "[^: ]*")}& ${2:$(yas/substr yas-text "[^: ]*")}) -> ${1:$(yas/substr yas-text "[^: ]*")}& = default;
 
-    auto operator = (const ${1:$(yas/substr yas-text "[^: ]*")}&  ${2:$(yas/substr yas-text "[^: ]*")}) -> ${1:$(yas/substr yas-text "[^: ]*")}& = default;
-    auto operator = (      ${1:$(yas/substr yas-text "[^: ]*")}&& ${2:$(yas/substr yas-text "[^: ]*")}) -> ${1:$(yas/substr yas-text "[^: ]*")}& = default;
+  //! A move assignment operator
+  /*!
+   * 
+   */
+  auto operator = (${1:$(yas/substr yas-text "[^: ]*")}&& ${2:$(yas/substr yas-text "[^: ]*")}) -> ${1:$(yas/substr yas-text "[^: ]*")}& = default;
 $0
 }; // class ${1:$(yas/substr yas-text "[^: ]*")}

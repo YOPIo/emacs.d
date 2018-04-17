@@ -1,15 +1,40 @@
-#name : struct ... { ... }
+#name : struct
 # key: struct
 # --
+/*!
+ * @struct
+ * @brief
+*/
 struct ${1:Struct}
 {
-    ${1:$(yas/substr yas-text "[^: ]*")}();
-    virtual ~${1:$(yas/substr yas-text "[^: ]*")}();
+    /*!
+    * Default Constructor
+    */
+    ${1:$(yas/substr yas-text "[^: ]*")} () = default;
 
+    /*!
+    * Copy constructor
+    */
     ${1:$(yas/substr yas-text "[^: ]*")}(const ${1:$(yas/substr yas-text "[^: ]*")}& ${2:arg}) = default;
-    ${1:$(yas/substr yas-text "[^: ]*")}(${1:$(yas/substr yas-text "[^: ]*")}&& ${2:$(yas/substr yas-text "[^: ]*")})      = default;
 
+    /*!
+    * Move constructor
+    */
+    ${1:$(yas/substr yas-text "[^: ]*")}(${1:$(yas/substr yas-text "[^: ]*")}&& ${2:$(yas/substr yas-text "[^: ]*")}) = default;
+
+    /*!
+    * Destructor
+    */
+    virtual ~${1:$(yas/substr yas-text "[^: ]*")} () = default;
+
+    /*!
+    * Copy assignment operator
+    */
     auto operator = (const ${1:$(yas/substr yas-text "[^: ]*")}& ${2:$(yas/substr yas-text "[^: ]*")}) -> ${1:$(yas/substr yas-text "[^: ]*")}& = default;
-    auto operator = (${1:$(yas/substr yas-text "[^: ]*")}&& ${2:$(yas/substr yas-text "[^: ]*")})      -> ${1:$(yas/substr yas-text "[^: ]*")}& = default;
+
+    /*!
+    * Move assignment operator
+    */
+    auto operator = (${1:$(yas/substr yas-text "[^: ]*")}&& ${2:$(yas/substr yas-text "[^: ]*")}) -> ${1:$(yas/substr yas-text "[^: ]*")}& = default;
 $0
 };
