@@ -8,7 +8,7 @@
  * @param[in] 
  * @param[out] 
  * @return 
- * @exception 
+ * @exception none
  * @details 
  */
 auto ${1:Function} (${2:Param}) -> ${3:Return};

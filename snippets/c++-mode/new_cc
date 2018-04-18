@@ -3,10 +3,10 @@
 # key: newcc
 # --
 /*!
- * @file $1
+ * @file ${1:File}.h
  * @brief $2
  * @author $3
  * @date $4
  * @details $5
  */
-
+#include "$1.h"

@@ -5,29 +5,28 @@
  * @struct $1
  * @brief 
  * @details 
- * 
 */
 struct ${1:Struct}
 {
-  //! A default Constructor
+  //! Default Constructor
   /*!
    * 
    */
   ${1:$(yas/substr yas-text "[^: ]*")} () = default;
 
-  //! A copy constructor
+  //! Copy constructor
   /*!
    * 
    */
   ${1:$(yas/substr yas-text "[^: ]*")}(const ${1:$(yas/substr yas-text "[^: ]*")}& ${2:arg}) = default;
 
-  //! A move constructor
+  //! Move constructor
   /*!
    * 
    */
   ${1:$(yas/substr yas-text "[^: ]*")}(${1:$(yas/substr yas-text "[^: ]*")}&& ${2:$(yas/substr yas-text "[^: ]*")}) = default;
 
-  //! A destructor
+  //! Destructor
   /*!
    * 
    */

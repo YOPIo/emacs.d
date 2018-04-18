@@ -2,8 +2,6 @@
 # name: new_h
 # key: newh
 # --
-#ifndef _$1_H_
-#define _$1_H_
 /*!
  * @file $2
  * @brief $3
@@ -11,5 +9,10 @@
  * @date $5
  * @details $6
  */
+#ifndef _$1_H_
+#define _$1_H_
+
+$0
+
 #endif // _$1_H_
 
