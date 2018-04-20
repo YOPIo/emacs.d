@@ -1,9 +1,9 @@
 # -*- mode: snippet -*-
 # name: operator
-# key: operator
+# key: o
 # --
 /*!
- * @fu operator $1
+ * @fn operator $1
  * @brief 
  * @details 
  * @return 
