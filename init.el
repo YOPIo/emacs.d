@@ -1,3 +1,5 @@
+(add-to-list 'load-path "~/.emacs.d/elpa")
+
 ;; ---------------------------------------
 ;; Buildin settings
 ;; ---------------------------------------
@@ -83,12 +85,6 @@
             (font-lock-add-keywords nil
                                     '(("^[^\n]\\{80\\}\\(.*\\)$" 1 font-lock-warning-face t)))))
 
-;;(load-file "~/.emacs.d/google-c-style.el")
-;;(require 'google-c-style)
-;;(add-hook 'c-mode-common-hook 'google-set-c-style)
-;;(add-hook 'c++-mode-common-hook 'google-set-c-style)
-;;(add-hook 'c-mode-common-hook 'google-make-newline-indent)
-
 ;;---------------------------------------
 ;; Settings for el-get
 ;;---------------------------------------
@@ -113,10 +109,11 @@
 (el-get-bundle yasnippets)
 (el-get-bundle cmake-mode)
 (el-get-bundle pos-tip)
-(el-get-bundle haskell-mode)
 (el-get-bundle col-highlight)
 (el-get-bundle twittering-mode)
-
+(el-get-bundle epc)
+(el-get-bundle jedi-core)
+(el-get-bundle company-jedi :depends (company-mode))
 
 ;;---------------------------------------
 ;; Settings for irony-mode
@@ -277,6 +274,13 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Ricty" :foundry "PfEd" :slant normal :weight normal :height 151 :width normal)))))
 
+;;---------------------------------------
+;; Mozc
+;;---------------------------------------
+(require 'mozc)
+(set-language-environment "Japanese")
+(setq default-input-method "japanese-mozc")
+(prefer-coding-system 'utf-8)
 
 ;;---------------------------------------
 ;; Twittering-mode
@@ -287,11 +291,26 @@
 
 
 ;;---------------------------------------
-;; Settings for column-maker
+;; Font settintg
 ;;---------------------------------------
-;;; col-highlight.el
-;; (require 'col-highlight)
-;; (column-highlight-mode 1)
-;; Color setting
-;;(custom-set-faces
-;;  '(col-highlight((t (:background "dark slate gray")))))
+(set-face-attribute 'default nil
+                    :family "Ricty Regular"
+                    :height 120)
+(set-fontset-font (frame-parameter nil 'font)
+                  'japanese-jisx0208
+                  (cons "Ricty Regular" "iso10646-1"))
+(set-fontset-font (frame-parameter nil 'font)
+                  'japanese-jisx0212
+                  (cons "Ricty Regular" "iso10646-1"))
+(set-fontset-font (frame-parameter nil 'font)
+                  'katakana-jisx0201
+                  (cons "Ricty Regular" "iso10646-1"))
+
+;;---------------------------------------
+;; Python settings
+;;---------------------------------------
+(require 'jedi-core)
+(setq jedi:complete-on-dot t)
+(setq jedi:use-shortcuts t)
+(add-hook 'python-mode-hook 'jedi:setup)
+(add-to-list 'company-backends 'company-jedi) ; backendに追加
