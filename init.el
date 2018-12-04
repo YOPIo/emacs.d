@@ -114,6 +114,7 @@
 (el-get-bundle epc)
 (el-get-bundle jedi-core)
 (el-get-bundle company-jedi :depends (company-mode))
+(el-get-bundle yatex)
 
 ;;---------------------------------------
 ;; Settings for irony-mode
@@ -314,3 +315,10 @@
 (setq jedi:use-shortcuts t)
 (add-hook 'python-mode-hook 'jedi:setup)
 (add-to-list 'company-backends 'company-jedi) ; backendに追加
+
+;;---------------------------------------
+;; Yatex
+;;---------------------------------------
+(setq auto-mode-alist
+      (cons (cons "\\.tex$" 'yatex-mode) auto-mode-alist))
+(autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
