@@ -115,6 +115,7 @@
 (el-get-bundle jedi-core)
 (el-get-bundle company-jedi :depends (company-mode))
 (el-get-bundle yatex)
+(el-get-bundle markdown-preview-mode)
 
 ;;---------------------------------------
 ;; Settings for irony-mode
@@ -322,3 +323,8 @@
 (setq auto-mode-alist
       (cons (cons "\\.tex$" 'yatex-mode) auto-mode-alist))
 (autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
+
+;;---------------------------------------
+;; Markdown-preview-mode
+;;---------------------------------------
+(setq markdown-preview-stylesheets (list "github.css"))
