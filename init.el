@@ -11,6 +11,13 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
+; windmove
+(windmove-default-keybindings)
+(global-set-key (quote [kp-8]) (quote windmove-up))
+(global-set-key (quote [kp-2]) (quote windmove-down))
+(global-set-key (quote [kp-6]) (quote windmove-right))
+(global-set-key (quote [kp-4]) (quote windmove-left))
+
 (setq auto-save-default nil)
 (setq make-backup-files nil)
 ;; Do not show startup memu
@@ -126,7 +133,6 @@
 
 (eval-after-load "irony"
   '(progn
-     (custom-set-variables '(irony-additional-clang-options '("-std=c++11")))
      (add-to-list 'company-backends 'company-irony)
      (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
      (add-hook 'c-mode-common-hook 'irony-mode)))
@@ -140,18 +146,6 @@
                                         ;    'irony-completion-at-point-async))
                                         ;(add-hook 'irony-mode-hook 'my-irony-mode-hook)
                                         ;(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-
-;;---------------------------------------
-;; Settings for irony
-;; irony-mode は libclang を利用してコードの補完などをする
-;; 初回起動時に "M-x irony-install-server" を実行する必要がある
-;;---------------------------------------
-(eval-after-load "irony"
-  '(progn
-     (custom-set-variables '(irony-additional-clang-options '("-std=c++11"))) ;; clang++ に渡すオプションの追加
-     (add-to-list 'company-backends 'company-irony)
-     (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-     (add-hook 'c-mode-common-hook 'irony-mode)))
 
 ;;---------------------------------------
 ;; Settings for company-mode
@@ -266,7 +260,7 @@
          messages "
 ")))))
  '(font-use-system-font t)
- '(irony-additional-clang-options (quote ("-std=c++11")))
+ '(irony-additional-clang-options (quote ("-std=c++17")))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
