@@ -53,11 +53,12 @@
 (electric-pair-mode 1)
 ;; theme
 (load-theme 'tango-dark t)
-(show-paren-mode 1)
-(set-face-background 'show-paren-match-face "grey")
-(set-face-foreground 'show-paren-match-face "black")
+; (show-paren-mode 1)
+; (set-face-background 'show-paren-match-face "grey")
+; (set-face-foreground 'show-paren-match-face "black")
 ;; .h -> c++ mode
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.cu\\'" . c++-mode))
 
 ;; Input methods, use mozc
 ;;(require 'mozc)
@@ -121,7 +122,7 @@
 (el-get-bundle epc)
 (el-get-bundle jedi-core)
 (el-get-bundle company-jedi :depends (company-mode))
-(el-get-bundle yatex)
+; (el-get-bundle yatex)
 (el-get-bundle markdown-preview-mode)
 
 ;;---------------------------------------
@@ -260,7 +261,7 @@
          messages "
 ")))))
  '(font-use-system-font t)
- '(irony-additional-clang-options (quote ("-std=c++17")))
+ '(irony-additional-clang-options (quote ("-std=gnu++17")))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -273,10 +274,10 @@
 ;;---------------------------------------
 ;; Mozc
 ;;---------------------------------------
-(require 'mozc)
-(set-language-environment "Japanese")
-(setq default-input-method "japanese-mozc")
-(prefer-coding-system 'utf-8)
+; (require 'mozc)
+; (set-language-environment "Japanese")
+; (setq default-input-method "japanese-mozc")
+; (prefer-coding-system 'utf-8)
 
 ;;---------------------------------------
 ;; Twittering-mode
