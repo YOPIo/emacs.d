@@ -114,16 +114,18 @@
 (el-get-bundle flycheck)
 (el-get-bundle flycheck-irony)
 (el-get-bundle company-quickhelp)
+; (el-get-bundle company-popup-pip)
+(el-get-bundle rtags)
 (el-get-bundle yasnippets)
 (el-get-bundle cmake-mode)
 (el-get-bundle pos-tip)
 (el-get-bundle col-highlight)
-(el-get-bundle twittering-mode)
-(el-get-bundle epc)
-(el-get-bundle jedi-core)
-(el-get-bundle company-jedi :depends (company-mode))
+; (el-get-bundle twittering-mode)
+; (el-get-bundle epc)
+; (el-get-bundle jedi-core)
+; (el-get-bundle company-jedi :depends (company-mode))
 ; (el-get-bundle yatex)
-(el-get-bundle markdown-preview-mode)
+; (el-get-bundle markdown-preview-mode)
 
 ;;---------------------------------------
 ;; Settings for irony-mode
@@ -270,56 +272,3 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Ricty" :foundry "PfEd" :slant normal :weight normal :height 151 :width normal)))))
-
-;;---------------------------------------
-;; Mozc
-;;---------------------------------------
-; (require 'mozc)
-; (set-language-environment "Japanese")
-; (setq default-input-method "japanese-mozc")
-; (prefer-coding-system 'utf-8)
-
-;;---------------------------------------
-;; Twittering-mode
-;;---------------------------------------
-(add-to-list 'load-path "~/.emacs.d/el-get/twittering-mode")
-(require 'twittering-mode)
-(setq twittering-use-master-password t)
-
-
-;;---------------------------------------
-;; Font settintg
-;;---------------------------------------
-(set-face-attribute 'default nil
-                    :family "Ricty Regular"
-                    :height 120)
-(set-fontset-font (frame-parameter nil 'font)
-                  'japanese-jisx0208
-                  (cons "Ricty Regular" "iso10646-1"))
-(set-fontset-font (frame-parameter nil 'font)
-                  'japanese-jisx0212
-                  (cons "Ricty Regular" "iso10646-1"))
-(set-fontset-font (frame-parameter nil 'font)
-                  'katakana-jisx0201
-                  (cons "Ricty Regular" "iso10646-1"))
-
-;;---------------------------------------
-;; Python settings
-;;---------------------------------------
-(require 'jedi-core)
-(setq jedi:complete-on-dot t)
-(setq jedi:use-shortcuts t)
-(add-hook 'python-mode-hook 'jedi:setup)
-(add-to-list 'company-backends 'company-jedi) ; backendに追加
-
-;;---------------------------------------
-;; Yatex
-;;---------------------------------------
-(setq auto-mode-alist
-      (cons (cons "\\.tex$" 'yatex-mode) auto-mode-alist))
-(autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
-
-;;---------------------------------------
-;; Markdown-preview-mode
-;;---------------------------------------
-(setq markdown-preview-stylesheets (list "github.css"))
